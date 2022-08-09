@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { LandingPageNavbarComponent } from './components/landing-page-navbar/landing-page-navbar.component';
 import { LandingPageFeaturesComponent } from './components/landing-page-features/landing-page-features.component';
+import { LandingPageMembersComponent } from './components/landing-page-members/landing-page-members.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     LandingPageNavbarComponent,
-    LandingPageFeaturesComponent
+    LandingPageFeaturesComponent,
+    LandingPageMembersComponent
   ],
   imports: [
     BrowserModule,
