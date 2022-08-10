@@ -7,6 +7,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { LandingPageNavbarComponent } from './components/landing-page-navbar/landing-page-navbar.component';
 import { LandingPageFeaturesComponent } from './components/landing-page-features/landing-page-features.component';
 import { LandingPageMembersComponent } from './components/landing-page-members/landing-page-members.component';
+import { LandingPageFooterComponent } from './components/landing-page-footer/landing-page-footer.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { LandingPageMembersComponent } from './components/landing-page-members/l
     LandingPageComponent,
     LandingPageNavbarComponent,
     LandingPageFeaturesComponent,
-    LandingPageMembersComponent
+    LandingPageMembersComponent,
+    LandingPageFooterComponent
   ],
   imports: [
     BrowserModule,
