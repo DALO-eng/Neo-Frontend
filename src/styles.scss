@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,600|Roboto");
-
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 html,
 body,
 div,
@@ -190,3 +190,6 @@ table {
     }
   }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

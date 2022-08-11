@@ -8,6 +8,11 @@ import { LandingPageNavbarComponent } from './components/landing-page-navbar/lan
 import { LandingPageFeaturesComponent } from './components/landing-page-features/landing-page-features.component';
 import { LandingPageMembersComponent } from './components/landing-page-members/landing-page-members.component';
 import { LandingPageFooterComponent } from './components/landing-page-footer/landing-page-footer.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,13 +21,17 @@ import { LandingPageFooterComponent } from './components/landing-page-footer/lan
     LandingPageNavbarComponent,
     LandingPageFeaturesComponent,
     LandingPageMembersComponent,
-    LandingPageFooterComponent
+    LandingPageFooterComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
