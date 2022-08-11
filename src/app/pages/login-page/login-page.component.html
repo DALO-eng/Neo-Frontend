@@ -4,20 +4,52 @@
       <figure class="img-container">
         <img src="../../../assets/black-logo.png" alt="" />
       </figure>
-      <h1 class="container-title">Login</h1>
+      <h1 class="container-title">Sing In / Sign Up</h1>
     </div>
     <div class="container-form">
-       <form>
-        <mat-form-field class="my-input" color="white">
-          <mat-label>Número de teléfono</mat-label>
-          <input  matInput placeholder="Ex. 3152994765">
-        </mat-form-field>
-        <mat-form-field class="my-input" color="white">
-          <mat-label>Contraseña</mat-label>
-          <input matInput placeholder="Ex. Pizza">
-        </mat-form-field>
-        <button mat-raised-button color="primary">Sign In</button>
-       </form>
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Sign In">
+          <form class="my-form">
+            <mat-form-field class="my-input" color="white">
+              <mat-label>Número de teléfono</mat-label>
+              <mat-icon matPrefix class="my-icon">call</mat-icon>
+              <input matInput placeholder="Ex. 3152994765" />
+            </mat-form-field>
+            <mat-form-field class="my-input" color="white">
+              <mat-label>Contraseña</mat-label>
+              <mat-icon matPrefix class="my-icon">lock</mat-icon>
+              <input matInput type="password"/>
+              <mat-hint>Olvidaste tu contraseña?</mat-hint>
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="my-button">Sign In</button>
+          </form>
+        </mat-tab>
+        <mat-tab label="Sign Up">
+          <form class="my-form">
+            <mat-form-field class="my-input" color="white">
+              <mat-label>Nombre</mat-label>
+              <mat-icon matPrefix class="my-icon">account_circle</mat-icon>
+              <input matInput/>
+            </mat-form-field>
+            <mat-form-field class="my-input" color="white">
+              <mat-label>Número de teléfono</mat-label>
+              <mat-icon matPrefix class="my-icon">call</mat-icon>
+              <input matInput placeholder="Ex. 3152994765" />
+            </mat-form-field>
+            <mat-form-field class="my-input" color="white">
+              <mat-label>Contraseña</mat-label>
+              <mat-icon matPrefix class="my-icon">lock</mat-icon>
+              <input matInput type="password"/>
+            </mat-form-field>
+            <mat-form-field class="my-input" color="white">
+              <mat-label>Confirmar Contraseña</mat-label>
+              <mat-icon matPrefix class="my-icon">lock</mat-icon>
+              <input matInput type="password"/>
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="my-button">Sign Up</button>
+          </form>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </main>
