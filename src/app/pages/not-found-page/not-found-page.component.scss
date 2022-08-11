@@ -1,0 +1,14 @@
+.main-background {
+  .not-found-container {
+    margin: .5rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    text-align: center;
+    .image-container {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

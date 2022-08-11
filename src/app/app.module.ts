@@ -9,6 +9,8 @@ import { LandingPageFeaturesComponent } from './components/landing-page-features
 import { LandingPageMembersComponent } from './components/landing-page-members/landing-page-members.component';
 import { LandingPageFooterComponent } from './components/landing-page-footer/landing-page-footer.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LandingPageMembersComponent,
     LandingPageFooterComponent,
     LoginPageComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
