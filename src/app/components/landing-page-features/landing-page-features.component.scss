@@ -3,7 +3,7 @@
     .section-content {
       display: grid;
       gap: 2rem;
-      grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
       .feature-container {
         display: flex;
         .feature-logo {
