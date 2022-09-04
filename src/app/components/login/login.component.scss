@@ -1,0 +1,21 @@
+.my-form {
+  padding-top: 2rem;
+  .my-input {
+    width: 100%;
+    .my-icon {
+      margin-right: 0.5rem;
+    }
+    .my-suffix-icon {
+      font-size: 150%;
+      vertical-align: baseline;
+    }
+  }
+  .forgot-pass-button {
+    margin-top: .2rem;
+    display: block;
+    padding: 0;
+  }
+  .my-button {
+    margin-top: 1rem;
+  }
+}
