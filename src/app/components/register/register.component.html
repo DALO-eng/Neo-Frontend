@@ -1,23 +1,179 @@
-<form class="my-form">
-  <mat-form-field class="my-input" color="white">
-    <mat-label>Nombre</mat-label>
-    <mat-icon matPrefix class="my-icon">account_circle</mat-icon>
-    <input matInput/>
-  </mat-form-field>
-  <mat-form-field class="my-input" color="white">
-    <mat-label>Número de teléfono</mat-label>
-    <mat-icon matPrefix class="my-icon">call</mat-icon>
-    <input matInput placeholder="Ex. 3152994765" />
-  </mat-form-field>
-  <mat-form-field class="my-input" color="white">
-    <mat-label>Contraseña</mat-label>
-    <mat-icon matPrefix class="my-icon">lock</mat-icon>
-    <input matInput type="password"/>
-  </mat-form-field>
-  <mat-form-field class="my-input" color="white">
-    <mat-label>Confirmar Contraseña</mat-label>
-    <mat-icon matPrefix class="my-icon">lock</mat-icon>
-    <input matInput type="password"/>
-  </mat-form-field>
+<form class="my-form" [formGroup]="registerForm" (ngSubmit)="register()">
+  <fieldset formGroupName="cuenta">
+    <!--CELULAR-->
+    <mat-form-field class="my-input" color="white">
+      <mat-label>Número de teléfono</mat-label>
+      <mat-icon matPrefix class="my-icon">call</mat-icon>
+      <input matInput placeholder="Ex. 3152994765" formControlName="celular" />
+      <mat-error
+        *ngIf="registerForm.get('cuenta.celular')?.hasError('required')"
+        >Valor requerido</mat-error
+      >
+      <mat-error *ngIf="registerForm.get('cuenta.celular')?.hasError('pattern')"
+        >Celular inválido</mat-error
+      >
+    </mat-form-field>
+    <!--CONTRASEÑA-->
+    <mat-form-field class="my-input" color="white">
+      <mat-label>Contraseña</mat-label>
+      <mat-icon matPrefix class="my-icon">lock</mat-icon>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="contrasena"
+        minlength="4"
+        maxlength="4"
+        (input)="confirmPassword()"
+      />
+      <button
+        type="button"
+        matSuffix
+        mat-icon-button
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon class="my-suffix-icon">{{
+          hide ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+      <mat-error
+        *ngIf="registerForm.get('cuenta.contrasena')?.hasError('required')"
+        >Valor requerido</mat-error
+      >
+      <mat-error
+        *ngIf="registerForm.get('cuenta.contrasena')?.hasError('pattern')"
+        >La contraseña deben ser 4 dígitos</mat-error
+      >
+      <mat-error
+        *ngIf="registerForm.get('cuenta.contrasena')?.hasError('noCoincide')"
+        >No coinciden las contraseñas</mat-error
+      >
+    </mat-form-field>
+    <!--CONFIRMAR CONTRASEÑA-->
+    <mat-form-field class="my-input" color="white">
+      <mat-label>Confirmar Contraseña</mat-label>
+      <mat-icon matPrefix class="my-icon">lock</mat-icon>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="confContrasena"
+        minlength="4"
+        maxlength="4"
+        (input)="confirmPassword()"
+      />
+      <button
+        type="button"
+        matSuffix
+        mat-icon-button
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon class="my-suffix-icon">{{
+          hide ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+      <mat-error
+        *ngIf="registerForm.get('cuenta.confContrasena')?.hasError('required')"
+        >Valor requerido</mat-error
+      >
+      <mat-error
+        *ngIf="registerForm.get('cuenta.contrasena')?.hasError('pattern')"
+        >La contraseña deben ser 4 dígitos</mat-error
+      >
+      <mat-error
+        *ngIf="registerForm.get('cuenta.confContrasena')?.hasError('noCoincide')"
+        >No coinciden las contraseñas</mat-error
+      >
+    </mat-form-field>
+  </fieldset>
+  <fieldset formGroupName="cliente">
+    <!--NOMBRE-->
+    <mat-form-field class="my-input" color="white">
+      <mat-label>Nombre</mat-label>
+      <mat-icon matPrefix class="my-icon">account_circle</mat-icon>
+      <input matInput type="text" formControlName="nombre" />
+      <mat-error
+        *ngIf="registerForm.get('cliente.nombre')?.hasError('required')"
+        >Valor requerido</mat-error
+      >
+    </mat-form-field>
+    <!--CORREO-->
+    <mat-form-field class="my-input" color="white">
+      <mat-label>Correo Electrónico</mat-label>
+      <mat-icon matPrefix class="my-icon">mail</mat-icon>
+      <input matInput type="email" formControlName="correo" />
+      <mat-error
+        *ngIf="registerForm.get('cliente.correo')?.hasError('required')"
+        >Valor requerido</mat-error
+      >
+      <mat-error
+        *ngIf="registerForm.get('cliente.correo')?.hasError('email')"
+        >Ingrese un correo válido</mat-error
+      >
+    </mat-form-field>
+    <!--NACIMIENTO-->
+    <mat-form-field class="my-input">
+      <mat-label>Fecha de nacimiento</mat-label>
+      <mat-icon matPrefix class="my-icon">cake</mat-icon>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="nacimiento"
+        [max]="todayDate"
+        (dateChange)="greaterThan18($event.value)"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error
+        *ngIf="registerForm.get('cliente.nacimiento')?.hasError('required')"
+        >Valor requerido</mat-error
+      >
+      <mat-error
+        *ngIf="registerForm.get('cliente.nacimiento')?.hasError('menorEdad')"
+        >El usuario debe ser mayor de edad</mat-error
+      >
+    </mat-form-field>
+  </fieldset>
+  <fieldset formGroupName="documento">
+    <!--TIPO DOCUMENTO-->
+    <mat-form-field class="my-input">
+      <mat-label>Tipo de documento</mat-label>
+      <mat-icon matPrefix class="my-icon">badge</mat-icon>
+      <mat-select [value]="1" formControlName="tipo">
+        <mat-option *ngFor="let tipo of tipoDocumento" [value]="tipo.value">
+          {{ tipo.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="registerForm.get('documento.tipo')?.hasError('required')"
+        >Valor requerido</mat-error
+      >
+    </mat-form-field>
+    <!--NUMERO DOCUMENTO-->
+    <mat-form-field class="my-input" color="white">
+      <mat-label>Número de documento</mat-label>
+      <mat-icon matPrefix class="my-icon">tag</mat-icon>
+      <input matInput placeholder="Ex. 1005297027" formControlName="numero" />
+      <mat-error
+        *ngIf="registerForm.get('documento.numero')?.hasError('required')"
+        >Valor requerido</mat-error
+      >
+    </mat-form-field>
+    <!--EXPEDICION-->
+    <mat-form-field class="my-input">
+      <mat-label>Fecha de expedición</mat-label>
+      <mat-icon matPrefix class="my-icon">event_available</mat-icon>
+      <input matInput [matDatepicker]="picker2" formControlName="expedicion" />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+      <mat-error
+        *ngIf="registerForm.get('documento.expedicion')?.hasError('required')"
+        >Valor requerido</mat-error
+      >
+    </mat-form-field>
+  </fieldset>
+
   <button mat-raised-button color="primary" class="my-button">Sign Up</button>
 </form>

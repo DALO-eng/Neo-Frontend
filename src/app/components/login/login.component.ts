@@ -18,8 +18,12 @@ export class LoginComponent implements OnInit {
 
   formBuild() {
     this.loginForm = this.fb.group({
-      numero: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
-      password: ['', [Validators.required]],
+      numero: ['', [Validators.required]],
+      contrasena: ['', [Validators.required]],
     })
+  }
+
+  login() {
+      console.log(this.loginForm.value);
   }
 }
