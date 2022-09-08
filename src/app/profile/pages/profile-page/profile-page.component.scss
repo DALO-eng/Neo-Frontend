@@ -1,0 +1,66 @@
+.main-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  .profile-container {
+    margin: 1rem;
+    max-width: 100%;
+    width: 1000px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .main-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 1rem;
+      width: 100%;
+      font-size: 30px;
+      background-color: #1E3163;
+      border-radius: 1rem;
+      .user-name,
+      .money {
+        margin: 0;
+      }
+    }
+    .actions-info {
+      width: 100%;
+      height: inherit;
+      column-count: 2;
+      column-gap: 20px;
+      margin: 20px;
+      .main-actions {
+        overflow-y: scroll;
+        height: inherit;
+        .card {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          border-radius: 1rem;
+          width: 100%;
+          background-color: #1E3163;
+          margin-bottom: 20px;
+          padding: 24px;
+          height: 230px;
+        }
+      }
+      .history {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+        width: 100%;
+        background-color: #1E3163;
+        margin-bottom: 20px;
+        padding: 24px;
+        height: inherit;
+      }
+    }
+  }
+}

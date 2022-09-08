@@ -1,32 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
   },
   {
-    path: 'home',
-    component: LandingPageComponent
-  },
-  {
-    path: 'login',
-    component: LoginPageComponent
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),
   },
   {
     path: '**',
-    component: NotFoundPageComponent
-  }
+    component: NotFoundPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
