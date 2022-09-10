@@ -4,13 +4,24 @@
       <h1 class="user-name">Bienvenido Daniel Alejandro Leon</h1>
       <p class="money">Saldo: {{ 69420 | currency }}</p>
     </div>
-    <div class="actions-info">
-      <div class="main-actions">
-        <div class="card">Sacar</div>
-        <div class="card">Meter</div>
-        <div class="card">Colchon</div>
-      </div>
-      <div class="history">Historial</div>
+    <div class="actions-info" *ngIf="!actionButton">
+      <app-main-buttons
+        *ngFor="let button of buttons"
+        [info]="button"
+        (action)="getAction($event)"
+      ></app-main-buttons>
+    </div>
+    <div class="actions-info" *ngIf="actionButton === 'Mandar dinero'">
+      <app-send-money
+        class="action-container"
+        (info)="getAction($event)"
+      ></app-send-money>
+    </div>
+    <div class="actions-info" *ngIf="actionButton === 'Sacar dinero'">
+      <app-withdraw-money
+        class="action-container"
+        (info)="getAction($event)"
+      ></app-withdraw-money>
     </div>
   </div>
 </main>

@@ -1,0 +1,38 @@
+.action-container {
+  width: 100%;
+  text-align: center;
+  background-color: #535fee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1rem;
+  padding: 1rem;
+  .action-header {
+    font-weight: bold
+  }
+  .action-form {
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 550px;
+    max-width: 100%;
+    background-color: #fff;
+    color: black;
+    .my-input {
+      width: 100%;
+      .my-icon {
+        margin-right: 0.5rem;
+      }
+      .my-suffix-icon {
+        font-size: 150%;
+        vertical-align: baseline;
+      }
+    }
+    .primary-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.main-button {
+  padding: 1rem 3rem;
+  font-size: 24px;
+  background-color: #535fee;
+  width: 320px;
+  max-width: 100%;
+  border-radius: 1rem;
+  .main-button-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+  }
+  .main-button-text {
+    margin: 0;
+  }
+}

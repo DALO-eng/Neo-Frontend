@@ -1,0 +1,35 @@
+<div class="action-container">
+  <div class="action-header">
+    <h1>Mandar dinero</h1>
+    <p>
+      Ingresa el número de la persona a la que quieras depositar junto a su
+      cantidad.
+    </p>
+  </div>
+  <div class="action-form">
+    <form>
+      <mat-form-field class="my-input">
+        <mat-label>Número de teléfono</mat-label>
+        <mat-icon matPrefix class="my-icon">call</mat-icon>
+        <input
+          matInput
+          placeholder="Ex. 3152994765"
+          type="tel"
+        />
+      </mat-form-field>
+      <mat-form-field class="my-input">
+        <mat-label>Cantidad de dinero</mat-label>
+        <mat-icon matPrefix class="my-icon">paid</mat-icon>
+        <input
+          matInput
+          placeholder="Ingresa la cantidad de dinero a mandar"
+          type="number"
+        />
+      </mat-form-field>
+      <div class="primary-buttons">
+        <button mat-raised-button color="warn" type="button" (click)="return()">Cancelar</button>
+        <button mat-raised-button color="primary">Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>
