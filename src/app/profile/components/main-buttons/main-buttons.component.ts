@@ -18,7 +18,6 @@ export class MainButtonsComponent implements OnInit {
   }
 
   setAction() {
-    console.log(this.info.mensaje);
     this.action.emit(this.info.mensaje);
   }
 

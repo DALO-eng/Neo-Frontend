@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
@@ -43,6 +45,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    HttpClientModule,
   ],
+  providers: [DatePipe],
 })
 export class MainModule {}

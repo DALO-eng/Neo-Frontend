@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+
+import { LoginRegisterService } from '../../services/login-register/login-register.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +22,12 @@ export class RegisterComponent implements OnInit {
     { value: 3, viewValue: 'Pasaporte' },
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private loginRegisterService: LoginRegisterService,
+    private datePipe: DatePipe,
+    private router: Router,
+  ) {
     this.todayDate = new Date();
     this.maxDateBirth = new Date(
       this.todayDate.getFullYear() - 18,
@@ -75,7 +84,6 @@ export class RegisterComponent implements OnInit {
       this.registerForm.get('cuenta.contrasena')?.value !==
       this.registerForm.get('cuenta.confContrasena')?.value
     ) {
-      console.log('No');
       this.registerForm.get('cuenta.contrasena')?.setErrors({
         noCoincide: true,
       });
@@ -94,9 +102,34 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  changeDateFormat() {
+    this.registerForm
+      .get('cliente.nacimiento')
+      ?.setValue(
+        this.datePipe.transform(
+          this.registerForm.get('cliente.nacimiento')?.value,
+          'yyyy-MM-dd'
+        )
+      );
+    this.registerForm
+      .get('documento.expedicion')
+      ?.setValue(
+        this.datePipe.transform(
+          this.registerForm.get('documento.expedicion')?.value,
+          'yyyy-MM-dd'
+        )
+      );
+  }
+
   register() {
-    if(this.registerForm.valid) {
+    if (this.registerForm.valid) {
+      this.changeDateFormat();
       console.log(this.registerForm.value);
+      this.loginRegisterService
+        .register(this.registerForm.value)
+        .subscribe(() => {
+          this.router.navigate(['/login']);
+        });
     }
   }
 }
