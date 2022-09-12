@@ -16,14 +16,14 @@ export class LoginComponent implements OnInit {
     this.formBuild();
   }
 
-  formBuild() {
+  formBuild(): void {
     this.loginForm = this.fb.group({
       numero: ['', [Validators.required]],
       contrasena: ['', [Validators.required]],
     })
   }
 
-  login() {
+  login(): void {
       console.log(this.loginForm.value);
   }
 }

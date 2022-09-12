@@ -23,5 +23,11 @@
         (info)="getAction($event)"
       ></app-withdraw-money>
     </div>
+    <div class="actions-info" *ngIf="actionButton === 'Historial'">
+      <app-history
+        class="action-container"
+        (info)="getAction($event)"
+      ></app-history>
+    </div>
   </div>
 </main>

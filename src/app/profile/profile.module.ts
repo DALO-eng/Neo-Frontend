@@ -13,6 +13,7 @@ import { MainButtonsComponent } from './components/main-buttons/main-buttons.com
 import { SendMoneyComponent } from './components/send-money/send-money.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WithdrawMoneyComponent } from './components/withdraw-money/withdraw-money.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { WithdrawMoneyComponent } from './components/withdraw-money/withdraw-mon
     MainButtonsComponent,
     SendMoneyComponent,
     WithdrawMoneyComponent,
+    HistoryComponent,
   ],
   imports: [
     CommonModule,

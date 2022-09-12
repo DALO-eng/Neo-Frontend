@@ -1,0 +1,37 @@
+.action-container {
+  width: 100%;
+  text-align: center;
+  background-color: #535fee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1rem;
+  padding: 1rem;
+  .action-header {
+    font-weight: bold;
+  }
+  .history {
+    margin-bottom: 1rem;
+    height: 400px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    .history-card {
+      padding: 2rem;
+      width: 25rem;
+      background-color: #fff;
+      border-radius: 1rem;
+      margin: 1rem 0;
+    }
+    .sacar {
+      border: 0.3rem solid red;
+    }
+    .llegar {
+      border: 0.3rem solid yellow;
+    }
+  }
+}
