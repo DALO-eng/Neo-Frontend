@@ -29,5 +29,11 @@
         (info)="getAction($event)"
       ></app-history>
     </div>
+    <div class="actions-info" *ngIf="actionButton === 'Colchón'">
+      <app-couch
+        class="action-container"
+        (info)="getAction($event)"
+      ></app-couch>
+    </div>
   </div>
 </main>

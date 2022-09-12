@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { LoginRegisterService } from '../../services/login-register/login-register.service';
+import { LoginRegisterService } from '../../../services/login-register/login-register.service';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private loginRegisterService: LoginRegisterService,
     private datePipe: DatePipe,
-    private router: Router,
+    private router: Router
   ) {
     this.todayDate = new Date();
     this.maxDateBirth = new Date(

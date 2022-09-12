@@ -1,0 +1,26 @@
+<div class="action-container">
+  <div class="action-header">
+    <h1>Colchón</h1>
+    <p>
+      Ingresa la cantidad de dinero que deseas guardar en tu colchón.
+    </p>
+    <p>Saldo colchón: {{420000 | currency}} </p>
+  </div>
+  <div class="action-form">
+    <form>
+      <mat-form-field class="my-input">
+        <mat-label>Cantidad de dinero</mat-label>
+        <mat-icon matPrefix class="my-icon">paid</mat-icon>
+        <input
+          matInput
+          placeholder="Ingresa la cantidad de dinero que desea guardar"
+          type="number"
+        />
+      </mat-form-field>
+      <div class="primary-buttons">
+        <button mat-raised-button color="warn" type="button" (click)="return()">Cancelar</button>
+        <button mat-raised-button color="primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>

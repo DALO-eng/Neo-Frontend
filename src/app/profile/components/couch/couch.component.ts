@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-withdraw-money',
-  templateUrl: './withdraw-money.component.html',
-  styleUrls: ['./withdraw-money.component.scss']
+  selector: 'app-couch',
+  templateUrl: './couch.component.html',
+  styleUrls: ['./couch.component.scss']
 })
-export class WithdrawMoneyComponent {
+export class CouchComponent {
   @Output() info = new EventEmitter<string | null>();
 
   constructor() { }
