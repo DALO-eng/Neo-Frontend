@@ -83,7 +83,9 @@
         >La contraseña deben ser 4 dígitos</mat-error
       >
       <mat-error
-        *ngIf="registerForm.get('cuenta.confContrasena')?.hasError('noCoincide')"
+        *ngIf="
+          registerForm.get('cuenta.confContrasena')?.hasError('noCoincide')
+        "
         >No coinciden las contraseñas</mat-error
       >
     </mat-form-field>
@@ -108,8 +110,7 @@
         *ngIf="registerForm.get('cliente.correo')?.hasError('required')"
         >Valor requerido</mat-error
       >
-      <mat-error
-        *ngIf="registerForm.get('cliente.correo')?.hasError('email')"
+      <mat-error *ngIf="registerForm.get('cliente.correo')?.hasError('email')"
         >Ingrese un correo válido</mat-error
       >
     </mat-form-field>
@@ -174,6 +175,16 @@
       >
     </mat-form-field>
   </fieldset>
-
+  <!--NEGOCIOS-->
+  <div class="my-input checker">
+    <mat-checkbox
+      color="primary"
+      formControlName="negocio"
+      [checked]="registerForm.get('negocio')?.value === 1"
+      (change)="registerForm.get('negocio')?.setValue($event.checked ? 1 : 0)"
+      >Cuenta de negocios</mat-checkbox
+    >
+  </div>
+  <!--BOTON-->
   <button mat-raised-button color="primary" class="my-button">Sign Up</button>
 </form>

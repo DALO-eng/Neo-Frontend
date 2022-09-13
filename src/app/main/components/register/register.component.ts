@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { LoginRegisterService } from '../../../services/login-register/login-register.service';
 
@@ -26,7 +27,8 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private loginRegisterService: LoginRegisterService,
     private datePipe: DatePipe,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.todayDate = new Date();
     this.maxDateBirth = new Date(
@@ -63,6 +65,7 @@ export class RegisterComponent implements OnInit {
         numero: ['', [Validators.required]],
         expedicion: ['', [Validators.required]],
       }),
+      negocio: [0, Validators.required],
     });
   }
 
@@ -124,11 +127,13 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.registerForm.valid) {
       this.changeDateFormat();
-      console.log(this.registerForm.value);
       this.loginRegisterService
         .register(this.registerForm.value)
-        .subscribe(() => {
-          this.router.navigate(['/login']);
+        .subscribe((res) => {
+          this.snackBar.open(res, 'Ok', {
+            duration: 4000,
+          });
+          this.router.navigate(['/home']);
         });
     }
   }
