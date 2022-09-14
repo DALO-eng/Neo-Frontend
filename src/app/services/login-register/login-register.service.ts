@@ -5,14 +5,13 @@ import { Login, mainInfo } from 'src/app/Models/sign';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginRegisterService {
-
-  user =  new BehaviorSubject<mainInfo | null>(null);
+  user = new BehaviorSubject<mainInfo | null>(null);
   user$ = this.user.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   register(user: any) {
     return this.http.post<any>(`${environment.API_URL}/registro/`, user);

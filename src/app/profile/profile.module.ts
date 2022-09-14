@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { WithdrawMoneyComponent } from './components/withdraw-money/withdraw-money.component';
 import { HistoryComponent } from './components/history/history.component';
 import { CouchComponent } from './components/couch/couch.component';
+import { PocketsComponent } from './components/pockets/pockets.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CouchComponent } from './components/couch/couch.component';
     WithdrawMoneyComponent,
     HistoryComponent,
     CouchComponent,
+    PocketsComponent,
   ],
   imports: [
     CommonModule,

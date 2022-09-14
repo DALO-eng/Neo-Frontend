@@ -35,5 +35,11 @@
         (info)="getAction($event)"
       ></app-couch>
     </div>
+    <div class="actions-info" *ngIf="actionButton === 'Bolsillos'">
+      <app-pockets
+        class="action-container"
+        (info)="getAction($event)"
+      ></app-pockets>
+    </div>
   </div>
 </main>

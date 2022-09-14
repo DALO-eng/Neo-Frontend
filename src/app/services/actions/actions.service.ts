@@ -10,6 +10,10 @@ export class ActionsService {
   constructor(private http: HttpClient) { }
 
   send (info : any) {
-    return this.http.post<any>(`${environment.API_URL}/enviar/`, info)
+    return this.http.post<any>(`${environment.API_URL}/enviar/`, info);
+  }
+
+  bolsillo(id: number) {
+    return this.http.get<any>(`${environment.API_URL}/bol/${id}`);
   }
 }

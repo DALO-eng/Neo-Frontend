@@ -21,17 +21,21 @@ export class ProfilePageComponent implements OnInit {
   actionButton: string | null = null;
   user: mainInfo | null;
 
-  constructor(private router: Router, private loginService: LoginRegisterService) {}
+  constructor(
+    private router: Router,
+    private loginService: LoginRegisterService
+  ) {}
 
   ngOnInit(): void {
     this.loginService.user$.subscribe((user) => {
       this.user = user;
-    })
+    });
   }
 
   getAction(action: string | null) {
     this.actionButton = action;
     if (this.actionButton === 'Salir') {
+      this.loginService.user.next(null);
       this.router.navigate(['/home']);
     }
   }

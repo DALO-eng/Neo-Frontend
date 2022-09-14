@@ -1,0 +1,13 @@
+<div class="action-container">
+  <div class="action-header">
+    <h1>Bolsillos</h1>
+    <p>Aqui puedes observar todos tus bolsillos.</p>
+  </div>
+  <div class="bolsillos">
+    <div *ngFor="let bolsillo of bolsillos" class="bolsillo">
+      <h1>{{ bolsillo.nombre }}</h1>
+      <p>Monto: {{ bolsillo.monto | currency }}</p>
+    </div>
+  </div>
+  <button mat-raised-button color="warn" type="button" (click)="return()">Cancelar</button>
+</div>
