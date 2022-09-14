@@ -12,4 +12,8 @@ export class LoginRegisterService {
   register(user: any) {
     return this.http.post<any>(`${environment.API_URL}/registro/`, user);
   }
+
+  login(user: any) {
+    return this.http.get<any>(`${environment.API_URL}/login/`, user);
+  }
 }
