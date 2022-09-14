@@ -1,8 +1,8 @@
 <main class="main-background">
   <div class="profile-container">
     <div class="main-info">
-      <h1 class="user-name">Bienvenido Daniel Alejandro Leon</h1>
-      <p class="money">Saldo: {{ 69420 | currency }}</p>
+      <h1 class="user-name">Bienvenido {{ user?.nombre }}</h1>
+      <p class="money">Saldo: {{ user?.monto | currency }}</p>
     </div>
     <div class="actions-info" *ngIf="!actionButton">
       <app-main-buttons

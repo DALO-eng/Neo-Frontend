@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginRegisterService } from 'src/app/services/login-register/login-register.service';
 
@@ -13,7 +15,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private loginService: LoginRegisterService
+    private loginService: LoginRegisterService,
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -29,9 +33,18 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
       this.loginService.login(this.loginForm.value).subscribe((res) => {
-        console.log(res);
+        if (res.id_cuenta) {
+          this.snackBar.open(`Bienvenido ${res.nombre}`, 'Ok', {
+            duration: 4000,
+          });
+          this.loginService.user.next(res);
+          this.router.navigate(['/profile']);
+        } else {
+          this.snackBar.open(res, 'Ok', {
+            duration: 4000,
+          });
+        }
       });
     }
   }

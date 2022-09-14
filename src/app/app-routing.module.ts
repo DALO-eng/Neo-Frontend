@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
+import { ProfileGuard } from './guards/profile/profile.guard';
 const routes: Routes = [
   {
     path: '',
@@ -10,7 +11,9 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),
+    canActivate: [ProfileGuard],
+    loadChildren: () =>
+      import('./profile/profile.module').then((m) => m.ProfileModule),
   },
   {
     path: '**',
