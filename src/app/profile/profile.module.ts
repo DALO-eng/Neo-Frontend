@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MainButtonsComponent } from './components/main-buttons/main-buttons.component';
 import { SendMoneyComponent } from './components/send-money/send-money.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +18,8 @@ import { WithdrawMoneyComponent } from './components/withdraw-money/withdraw-mon
 import { HistoryComponent } from './components/history/history.component';
 import { CouchComponent } from './components/couch/couch.component';
 import { PocketsComponent } from './components/pockets/pockets.component';
+import { SacarComponent } from './components/sacar/sacar.component';
+import { DeleteComponent } from './components/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import { PocketsComponent } from './components/pockets/pockets.component';
     HistoryComponent,
     CouchComponent,
     PocketsComponent,
+    SacarComponent,
+    DeleteComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +43,13 @@ import { PocketsComponent } from './components/pockets/pockets.component';
     MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatDialogModule,
+  ],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
   ],
 })
 export class ProfileModule {}

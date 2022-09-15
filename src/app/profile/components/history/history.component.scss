@@ -9,8 +9,13 @@
       display: none;
     }
     .history-card {
+      color: black;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
       padding: 2rem;
-      width: 25rem;
+      width: 30rem;
+      max-width: 100%;
       background-color: #fff;
       border-radius: 1rem;
       margin: 1rem 0;

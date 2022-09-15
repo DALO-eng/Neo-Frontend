@@ -1,15 +1,15 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActionsService } from 'src/app/services/actions/actions.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-withdraw-money',
-  templateUrl: './withdraw-money.component.html',
-  styleUrls: ['./withdraw-money.component.scss'],
+  selector: 'app-sacar',
+  templateUrl: './sacar.component.html',
+  styleUrls: ['./sacar.component.scss'],
 })
-export class WithdrawMoneyComponent implements OnInit {
+export class SacarComponent implements OnInit {
+  @Input() id: number | undefined;
   @Output() info = new EventEmitter<string | null>();
 
   form: FormGroup;
@@ -26,19 +26,19 @@ export class WithdrawMoneyComponent implements OnInit {
 
   buildForm(): void {
     this.form = this.fb.group({
-      celular: ['', [Validators.required, Validators.pattern('^3[0-9]{9}$')]],
-      monto: ['', [Validators.required, Validators.min(1000)]],
+      id_cuenta: [this.id, Validators.required],
       nombre: ['', Validators.required],
+      monto: ['', [Validators.required, Validators.min(1000)]],
     });
   }
 
-  consignar() {
+  retirar() {
     if (this.form.valid) {
-      this.actionService.consignar(this.form.value).subscribe((res) => {
+      this.actionService.retirar(this.form.value).subscribe((res) => {
         this.snackBar.open(res, 'Ok', {
           duration: 4000,
         });
-        if (res === 'consignacion exitosa.') {
+        if (res === 'Transaccion exitosa, retire su dinero de la ranura') {
           this.info.emit('Completed');
         }
       });

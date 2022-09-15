@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { mainInfo } from 'src/app/Models/sign';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteComponent } from '../../components/delete/delete.component';
 import { LoginRegisterService } from 'src/app/services/login-register/login-register.service';
-
+import { ActionsService } from 'src/app/services/actions/actions.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -12,18 +13,23 @@ import { LoginRegisterService } from 'src/app/services/login-register/login-regi
 export class ProfilePageComponent implements OnInit {
   buttons = [
     { logo: 'currency_exchange', mensaje: 'Mandar dinero' },
-    { logo: 'arrow_circle_down', mensaje: 'Consignar' },
+    { logo: 'price_check', mensaje: 'Consignar' },
+    { logo: 'arrow_circle_down', mensaje: 'Retirar' },
     { logo: 'history', mensaje: 'Historial' },
     { logo: 'chair', mensaje: 'Colchón' },
     { logo: 'workspaces', mensaje: 'Bolsillos' },
     { logo: 'logout', mensaje: 'Salir' },
+    { logo: 'delete_forever', mensaje: 'Borrar Cuenta' },
   ];
   actionButton: string | null = null;
   user: any;
 
   constructor(
     private router: Router,
-    private loginService: LoginRegisterService
+    private loginService: LoginRegisterService,
+    private actionService: ActionsService,
+    public dialogo: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -38,8 +44,10 @@ export class ProfilePageComponent implements OnInit {
       this.actionButton = action;
       if (this.actionButton === 'Salir') {
         this.loginService.user.next(null);
-        console.log('Salio');
         this.router.navigate(['/home']);
+      } else if (this.actionButton === 'Borrar Cuenta') {
+        this.actionButton = null;
+        this.mostrarDialogo();
       }
     }
   }
@@ -50,5 +58,22 @@ export class ProfilePageComponent implements OnInit {
         this.user = credentials;
       });
     });
+  }
+
+  mostrarDialogo(): void {
+    this.dialogo
+      .open(DeleteComponent, {
+        data: `¿Estás seguro que quieres eliminar esta cuenta?`,
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.loginService.user$.subscribe((user) => {
+            this.actionService.eliminar(user).subscribe((mensaje) => {
+              console.log(mensaje);
+            });
+          });
+        }
+      });
   }
 }

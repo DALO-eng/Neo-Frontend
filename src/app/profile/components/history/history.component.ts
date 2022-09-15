@@ -10,11 +10,13 @@ export class HistoryComponent implements OnInit {
   @Input() id: number | undefined;
   @Output() info = new EventEmitter<string | null>();
 
+  historial: any;
+
   constructor(private actionService: ActionsService) {}
 
   ngOnInit(): void {
     this.actionService.historial(this.id).subscribe((res) => {
-      console.log(res);
+      this.historial = res;
     });
   }
 

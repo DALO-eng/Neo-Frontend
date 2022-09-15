@@ -24,6 +24,13 @@
         (info)="getAction($event)"
       ></app-withdraw-money>
     </div>
+    <div class="actions-info" *ngIf="actionButton === 'Retirar'">
+      <app-sacar
+        class="action-container"
+        [id]="user?.id_cuenta"
+        (info)="getAction($event)"
+      ></app-sacar>
+    </div>
     <div class="actions-info" *ngIf="actionButton === 'Historial'">
       <app-history
         class="action-container"
@@ -34,6 +41,7 @@
     <div class="actions-info" *ngIf="actionButton === 'Colchón'">
       <app-couch
         class="action-container"
+        [id]="user?.id_cuenta"
         (info)="getAction($event)"
       ></app-couch>
     </div>

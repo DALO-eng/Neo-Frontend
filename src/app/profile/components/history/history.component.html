@@ -4,12 +4,15 @@
     <p>Aquí podrás observar tu historial de llegadas y envío de tu dinero.</p>
   </div>
   <div class="history">
-    <div class="history-card sacar">Hola :D</div>
-    <div class="history-card llegar">Hola :D</div>
-    <div class="history-card sacar">Hola :D</div>
-    <div class="history-card llegar">Hola :D</div>
-    <div class="history-card sacar">Hola :D</div>
-    <div class="history-card llegar">Hola :D</div>
+    <div *ngFor="let valor of historial" class="history-card sacar">
+      <div>
+        <h1>Enviado a: {{valor.recibe_id}}</h1>
+        <p>Fecha: {{valor.fecha}}</p>
+      </div>
+      <div>
+        <p>Monto: {{valor.monto | currency}}</p>
+      </div>
+    </div>
   </div>
   <button mat-raised-button color="warn" (click)="return()">Volver</button>
 </div>

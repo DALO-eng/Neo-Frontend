@@ -1,18 +1,18 @@
 <div class="action-container">
   <div class="action-header">
-    <h1>Colchón</h1>
-    <p>Ingresa la cantidad de dinero que deseas guardar en tu colchón.</p>
-    <p>Saldo colchón: {{ valorColchon | currency }}</p>
+    <h1>Retirar</h1>
+    <p>Ingresa la cantidad de dinero que deseas retirar.</p>
   </div>
   <div class="action-form">
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="retirar()">
       <mat-form-field class="my-input">
         <mat-label>Cantidad de dinero</mat-label>
         <mat-icon matPrefix class="my-icon">paid</mat-icon>
         <input
           matInput
-          placeholder="Ingresa la cantidad de dinero que desea guardar"
+          placeholder="Ingresa la cantidad de dinero que desea sacar"
           type="number"
+          min="1000"
           formControlName="monto"
         />
         <mat-error *ngIf="form.controls.monto.hasError('required')"
@@ -37,22 +37,7 @@
         <button mat-raised-button color="warn" type="button" (click)="return()">
           Cancelar
         </button>
-        <button
-          mat-raised-button
-          color="accent"
-          type="button"
-          (click)="sacarColchon()"
-        >
-          Sacar
-        </button>
-        <button
-          mat-raised-button
-          color="primary"
-          type="button"
-          (click)="guardarColchon()"
-        >
-          Guardar
-        </button>
+        <button mat-raised-button color="primary">Enviar</button>
       </div>
     </form>
   </div>
