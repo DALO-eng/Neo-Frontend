@@ -27,7 +27,6 @@ export class ProfilePageComponent implements OnInit {
   constructor(
     private router: Router,
     private loginService: LoginRegisterService,
-    private actionService: ActionsService,
     public dialogo: MatDialog,
     private snackBar: MatSnackBar
   ) {}
@@ -68,11 +67,7 @@ export class ProfilePageComponent implements OnInit {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          this.loginService.user$.subscribe((user) => {
-            this.actionService.eliminar(user).subscribe((mensaje) => {
-              console.log(mensaje);
-            });
-          });
+          this.router.navigate(['/home']);
         }
       });
   }
