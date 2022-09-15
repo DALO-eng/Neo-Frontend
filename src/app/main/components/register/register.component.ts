@@ -133,7 +133,9 @@ export class RegisterComponent implements OnInit {
           this.snackBar.open(res, 'Ok', {
             duration: 4000,
           });
-          this.router.navigate(['/home']);
+          if (res === 'Bienvenido a la familia Neo, tu registro fue exitoso') {
+            this.router.navigate(['/home']);
+          }
         });
     }
   }

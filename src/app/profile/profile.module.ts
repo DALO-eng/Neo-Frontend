@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 import { MainButtonsComponent } from './components/main-buttons/main-buttons.component';
 import { SendMoneyComponent } from './components/send-money/send-money.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -36,6 +37,7 @@ import { PocketsComponent } from './components/pockets/pockets.component';
     MatTooltipModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatSelectModule,
   ],
 })
 export class ProfileModule {}

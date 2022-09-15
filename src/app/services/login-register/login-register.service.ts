@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Login, mainInfo } from 'src/app/Models/sign';
+import { Login } from 'src/app/Models/sign';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginRegisterService {
-  user = new BehaviorSubject<mainInfo | null>(null);
+  user = new BehaviorSubject<any>('');
   user$ = this.user.asObservable();
 
   constructor(private http: HttpClient) {}

@@ -14,10 +14,11 @@
     <div class="actions-info" *ngIf="actionButton === 'Mandar dinero'">
       <app-send-money
         class="action-container"
+        [id]="user?.id_cuenta"
         (info)="getAction($event)"
       ></app-send-money>
     </div>
-    <div class="actions-info" *ngIf="actionButton === 'Sacar dinero'">
+    <div class="actions-info" *ngIf="actionButton === 'Consignar'">
       <app-withdraw-money
         class="action-container"
         (info)="getAction($event)"
@@ -26,6 +27,7 @@
     <div class="actions-info" *ngIf="actionButton === 'Historial'">
       <app-history
         class="action-container"
+        [id]="user?.id_cuenta"
         (info)="getAction($event)"
       ></app-history>
     </div>
@@ -38,6 +40,7 @@
     <div class="actions-info" *ngIf="actionButton === 'Bolsillos'">
       <app-pockets
         class="action-container"
+        [id]="user?.id_cuenta"
         (info)="getAction($event)"
       ></app-pockets>
     </div>

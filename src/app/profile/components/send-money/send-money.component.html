@@ -7,16 +7,7 @@
     </p>
   </div>
   <div class="action-form">
-    <form>
-      <mat-form-field class="my-input">
-        <mat-label>Número de teléfono</mat-label>
-        <mat-icon matPrefix class="my-icon">call</mat-icon>
-        <input
-          matInput
-          placeholder="Ex. 3152994765"
-          type="tel"
-        />
-      </mat-form-field>
+    <form [formGroup]="form" (ngSubmit)="enviar()">
       <mat-form-field class="my-input">
         <mat-label>Cantidad de dinero</mat-label>
         <mat-icon matPrefix class="my-icon">paid</mat-icon>
@@ -24,10 +15,62 @@
           matInput
           placeholder="Ingresa la cantidad de dinero a mandar"
           type="number"
+          formControlName="monto"
         />
+        <mat-error *ngIf="form.get('monto')?.hasError('required')"
+          >Valor requerido</mat-error
+        >
+        <mat-error *ngIf="form.get('monto')?.hasError('min')"
+          >La consignación debe ser mayor a 1000 pesos</mat-error
+        >
       </mat-form-field>
+      <fieldset formGroupName="envia">
+        <mat-form-field class="my-input">
+          <mat-label>Bolsillo de donde saldrá el dinero</mat-label>
+          <mat-icon matPrefix class="my-icon">spoke</mat-icon>
+          <mat-select formControlName="nombre">
+            <mat-option value="principal">Principal</mat-option>
+            <mat-option value="negocio">Negocio</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('envia.nombre')?.hasError('required')"
+            >Valor requerido</mat-error
+          >
+        </mat-form-field>
+      </fieldset>
+      <fieldset formGroupName="recibe">
+        <mat-form-field class="my-input">
+          <mat-label>Número de teléfono</mat-label>
+          <mat-icon matPrefix class="my-icon">call</mat-icon>
+          <input
+            matInput
+            placeholder="Ex. 3152994765"
+            type="tel"
+            formControlName="celular"
+          />
+          <mat-error *ngIf="form.get('recibe.celular')?.hasError('required')"
+            >Valor requerido</mat-error
+          >
+          <mat-error *ngIf="form.get('recibe.celular')?.hasError('pattern')"
+            >Celular inválido</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="my-input">
+          <mat-label>Bolsillo</mat-label>
+          <mat-icon matPrefix class="my-icon">spoke</mat-icon>
+          <mat-select formControlName="nombre">
+            <mat-option value="principal">Principal</mat-option>
+            <mat-option value="negocio">Negocio</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('recibe.nombre')?.hasError('required')"
+            >Valor requerido</mat-error
+          >
+        </mat-form-field>
+      </fieldset>
+
       <div class="primary-buttons">
-        <button mat-raised-button color="warn" type="button" (click)="return()">Cancelar</button>
+        <button mat-raised-button color="warn" type="button" (click)="return()">
+          Cancelar
+        </button>
         <button mat-raised-button color="primary">Enviar</button>
       </div>
     </form>

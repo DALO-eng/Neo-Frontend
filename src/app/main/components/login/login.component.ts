@@ -35,10 +35,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.loginService.login(this.loginForm.value).subscribe((res) => {
         if (res.id_cuenta) {
-          this.snackBar.open(`Bienvenido ${res.nombre}`, 'Ok', {
-            duration: 4000,
-          });
-          this.loginService.user.next(res);
+          this.loginService.user.next(this.loginForm.value);
           this.router.navigate(['/profile']);
         } else {
           this.snackBar.open(res, 'Ok', {

@@ -1,12 +1,26 @@
 <div class="action-container">
   <div class="action-header">
-    <h1>Sacar dinero</h1>
-    <p>
-      Ingresa la cantidad de dinero que desees sacar de Neo.
-    </p>
+    <h1>Consignación</h1>
+    <p>Ingresa la cantidad de dinero que desees ingresar a tu cuenta Neo.</p>
   </div>
   <div class="action-form">
-    <form>
+    <form [formGroup]="form" (ngSubmit)="consignar()">
+      <mat-form-field class="my-input">
+        <mat-label>Celular</mat-label>
+        <mat-icon matPrefix class="my-icon">paid</mat-icon>
+        <input
+          matInput
+          placeholder="Ingresa el celular que desee realizar la Consignación"
+          type="tel"
+          formControlName="celular"
+        />
+        <mat-error *ngIf="form.controls.celular.hasError('required')"
+          >Valor requerido</mat-error
+        >
+        <mat-error *ngIf="form.controls.celular.hasError('pattern')"
+          >Celular inválido</mat-error
+        >
+      </mat-form-field>
       <mat-form-field class="my-input">
         <mat-label>Cantidad de dinero</mat-label>
         <mat-icon matPrefix class="my-icon">paid</mat-icon>
@@ -14,10 +28,31 @@
           matInput
           placeholder="Ingresa la cantidad de dinero que desea sacar"
           type="number"
+          min="1000"
+          formControlName="monto"
         />
+        <mat-error *ngIf="form.controls.monto.hasError('required')"
+          >Valor requerido</mat-error
+        >
+        <mat-error *ngIf="form.controls.monto.hasError('min')"
+          >La consignación debe ser mayor a 1000 pesos</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="my-input">
+        <mat-label>Bolsillo</mat-label>
+        <mat-icon matPrefix class="my-icon">spoke</mat-icon>
+        <mat-select formControlName="nombre">
+          <mat-option value="principal">Principal</mat-option>
+          <mat-option value="negocio">Negocio</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls.nombre.hasError('required')"
+          >Valor requerido</mat-error
+        >
       </mat-form-field>
       <div class="primary-buttons">
-        <button mat-raised-button color="warn" type="button" (click)="return()">Cancelar</button>
+        <button mat-raised-button color="warn" type="button" (click)="return()">
+          Cancelar
+        </button>
         <button mat-raised-button color="primary">Enviar</button>
       </div>
     </form>

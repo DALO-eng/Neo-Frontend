@@ -12,14 +12,14 @@ import { LoginRegisterService } from 'src/app/services/login-register/login-regi
 export class ProfilePageComponent implements OnInit {
   buttons = [
     { logo: 'currency_exchange', mensaje: 'Mandar dinero' },
-    { logo: 'arrow_circle_down', mensaje: 'Sacar dinero' },
+    { logo: 'arrow_circle_down', mensaje: 'Consignar' },
     { logo: 'history', mensaje: 'Historial' },
     { logo: 'chair', mensaje: 'Colchón' },
     { logo: 'workspaces', mensaje: 'Bolsillos' },
     { logo: 'logout', mensaje: 'Salir' },
   ];
   actionButton: string | null = null;
-  user: mainInfo | null;
+  user: any;
 
   constructor(
     private router: Router,
@@ -27,16 +27,28 @@ export class ProfilePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loginService.user$.subscribe((user) => {
-      this.user = user;
-    });
+    this.login();
   }
 
   getAction(action: string | null) {
-    this.actionButton = action;
-    if (this.actionButton === 'Salir') {
-      this.loginService.user.next(null);
-      this.router.navigate(['/home']);
+    if (action === 'Completed') {
+      this.login();
+      this.actionButton = null;
+    } else {
+      this.actionButton = action;
+      if (this.actionButton === 'Salir') {
+        this.loginService.user.next(null);
+        console.log('Salio');
+        this.router.navigate(['/home']);
+      }
     }
+  }
+
+  login() {
+    this.loginService.user$.subscribe((user) => {
+      this.loginService.login(user).subscribe((credentials) => {
+        this.user = credentials;
+      });
+    });
   }
 }
